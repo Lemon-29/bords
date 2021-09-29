@@ -1,0 +1,49 @@
+<div class="d-flex align-items-center">
+  <h1>掲示板一覧</h1>
+  <div class="ml-auto bords__linkBox">
+    <%= form_with url: bords_path, method: :get, class: 'bords__searchForm' do %>
+      <%= select_tag :tag_id,
+                     options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
+                     {
+                       prompt: 'タグで絞り込み',
+                       class: 'form-control bords__select',
+                       onchange: 'submit(this.form);'
+                     }
+      %>
+    <% end %>
+    <a href="/bords/new" class="btn btn-outline-dark">新規作成</a>
+  </div>
+</div>
+
+<% if flash[:notice] %>
+  <div class="alert alert-danger"><%= flash[:notice] %></div>
+<% end %>
+
+<table class="table table-hover bords__table">
+  <thead class="thead-dark">
+    <tr>
+      <th>ID</th>
+      <th>タイトル</th>
+      <th>作成者</th>
+      <th>作成日時</th>
+      <th>更新日時</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @bords.each do |bord| %>
+      <tr>
+        <td><%= bord.id %></td>
+        <td><%= bord.title %></td>
+        <td><%= bord.name %></td>
+        <td><%= bord.created_at.to_s(:datetime_jp) %></td>
+        <td><%= bord.updated_at.to_s(:datetime_jp) %></td>
+        <td><%= link_to '詳細', bord, class: 'btn btn-outline-dark' %></td>
+        <td><%= link_to '削除', bord, class: 'btn btn-outline-dark', method: :delete %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @bords %>
