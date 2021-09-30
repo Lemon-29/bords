@@ -1,0 +1,2 @@
+class Bord < ApplicationRecord
+end
