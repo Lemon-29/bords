@@ -3,5 +3,6 @@ class BordsController < ActionController::Base
   end
 
   def new
+    @bord = Bord.new
   end
 end
