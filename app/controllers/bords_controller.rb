@@ -1,5 +1,6 @@
 class BordsController < ActionController::Base
   def index
+    @bords = Bord.all
   end
 
   def new
@@ -14,4 +15,5 @@ class BordsController < ActionController::Base
 
   def bord_params
      params.require(:bord).permit(:name, :titile, :body)
+  end
 end
