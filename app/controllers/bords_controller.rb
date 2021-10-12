@@ -15,6 +15,11 @@ class BordsController < ActionController::Base
     @bord = Bord.find(params[:id])
   end
 
+  def edit
+    @bord = Bord.find(params[:id])
+  end
+
+    
   private
 
   def bord_params
