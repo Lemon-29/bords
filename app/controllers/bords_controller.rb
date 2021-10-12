@@ -19,6 +19,12 @@ class BordsController < ActionController::Base
     @bord = Bord.find(params[:id])
   end
 
+  def update
+    bord = Bord.find(params[:id])
+    bord.update(bord_params)
+    redirect_to bord
+  end
+
     
   private
 
