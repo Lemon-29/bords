@@ -1,4 +1,6 @@
 class BordsController < ActionController::Base
+  before_action :set_target_bord, only: %i[show edit update destroy]
+
   def index
     @bords = Bord.all
   end
@@ -13,22 +15,18 @@ class BordsController < ActionController::Base
   end
 
   def show
-    @bord = Bord.find(params[:id])
   end
 
   def edit
-    @bord = Bord.find(params[:id])
   end
 
   def update
-    bord = Bord.find(params[:id])
     bord.update(bord_params)
     redirect_to bord
   end
 
    def destroy
-    bord = Bord.find(params[:id])
-    bord.delete
+    @bord.delete
     redirect_to bord_path
    end
    
@@ -37,5 +35,9 @@ class BordsController < ActionController::Base
 
   def bord_params
      params.require(:bord).permit(:name, :titile, :body)
+  end
+
+  def set_target_bord
+    @bord = Bord.find(params[:id])
   end
 end
