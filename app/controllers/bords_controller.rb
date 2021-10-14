@@ -8,7 +8,8 @@ class BordsController < ActionController::Base
   end
 
   def create
-    Bord.create(bord_params)
+    bord = Bord.create(bord_params)
+    redirect_to bord
   end
 
   def show
@@ -25,7 +26,13 @@ class BordsController < ActionController::Base
     redirect_to bord
   end
 
-    
+   def destroy
+    bord = Bord.find(params[:id])
+    bord.delete
+    redirect_to bord_path
+   end
+   
+   
   private
 
   def bord_params
