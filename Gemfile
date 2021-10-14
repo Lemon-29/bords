@@ -37,6 +37,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootstrap', '>= 4.1.0'
 gem 'mini_racer'
 gem 'jquery-rails'
+gem 'kaminari'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
