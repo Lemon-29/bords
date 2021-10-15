@@ -2,7 +2,7 @@ class BordsController < ActionController::Base
   before_action :set_target_bord, only: %i[show edit update destroy]
 
   def index
-    @bords = Bord.all
+    @bords = Bord.page(params[:page])
   end
 
   def new
