@@ -16,5 +16,7 @@ module Bords
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
     config.time_zone = 'Tokyo'
+    conifg.i18n.:default_locale = :ja
+    #Ex:- :default =>''
   end
 end
