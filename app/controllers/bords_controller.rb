@@ -3,6 +3,8 @@ class BordsController < ActionController::Base
 
   def index
     @bords = Bord.page(params[:page])
+    flash[:notice]= '「#{bord.title}」の掲示板を作成しました。'
+    redirect_to bord
   end
 
   def new
@@ -27,7 +29,7 @@ class BordsController < ActionController::Base
 
    def destroy
     @bord.delete
-    redirect_to bord_path
+    redirect_to bord_path, flash: { notice: '「#{@bord.title}」の掲示板が削除されました。'}
    end
    
    
