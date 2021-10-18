@@ -1,3 +1,13 @@
+<% if flash[:error_messages] %>
+ <div class= 'alert alert-ddanger'>
+  <ul>
+   <% flash[:error_messages].each do |msg| %>
+    <li><%= msg %></li>
+   <% end %>
+  </ul>
+</div>
+<% end %>
+
 
 <%= form_for bord do |f| %>
   <div class = 'form-group'>

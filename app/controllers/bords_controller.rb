@@ -3,8 +3,6 @@ class BordsController < ActionController::Base
 
   def index
     @bords = Bord.page(params[:page])
-    flash[:notice]= '「#{bord.title}」の掲示板を作成しました。'
-    redirect_to bord
   end
 
   def new
@@ -12,8 +10,14 @@ class BordsController < ActionController::Base
   end
 
   def create
-    bord = Bord.create(bord_params)
-    redirect_to bord
+    bord = Bord.new(bord_params)
+    if bord.save
+      flash[:notice]= '「#{bord.title}」の掲示板を作成しました。'
+      redirect_to bord
+    else
+      redirect_to new_bord_path, flash: { bord: bord, error_message: bord.errors.full_messages }
+      #bordにすることで入力されたままのフォームで返す
+    end
   end
 
   def show
