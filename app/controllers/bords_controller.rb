@@ -21,7 +21,8 @@ class BordsController < ActionController::Base
   end
 
   def show
-    @comment = @bord.comments.new
+    @comment = Comment.new(bord_id: @bord.id)
+    # @comment = @bord.comments.new
   end
 
   def edit
