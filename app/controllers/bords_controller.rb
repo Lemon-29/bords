@@ -42,7 +42,7 @@ class BordsController < ActionController::Base
   private
 
   def bord_params
-     params.require(:bord).permit(:name, :titile, :body)
+     params.require(:bord).permit(:name, :titile, :body, tag_ids)
   end
 
   def set_target_bord
