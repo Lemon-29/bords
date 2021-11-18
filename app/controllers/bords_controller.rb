@@ -2,7 +2,8 @@ class BordsController < ActionController::Base
   before_action :set_target_bord, only: %i[show edit update destroy]
 
   def index
-    @bords = Bord.page(params[:page])
+    @boards = params[:tag_id].present? ? Tag.find(params[:tag_id]).boards : Board.all
+    @bords = @bords.page(params[:page])
   end
 
   def new
@@ -37,8 +38,6 @@ class BordsController < ActionController::Base
     @bord.delete
     redirect_to bord_path, flash: { notice: '「#{@bord.title}」の掲示板が削除されました。'}
    end
-   
-   
   private
 
   def bord_params
